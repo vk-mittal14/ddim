@@ -7,6 +7,7 @@ from torchvision.datasets import CIFAR10
 from datasets.celeba import CelebA
 from datasets.ffhq import FFHQ
 from datasets.lsun import LSUN
+from datasets.cardata import CarData
 from torch.utils.data import Subset
 import numpy as np
 
@@ -56,6 +57,17 @@ def get_dataset(args, config):
             train=False,
             download=True,
             transform=test_transform,
+        )
+
+    elif config.data.dataset == "CARDATA":
+        transform = transforms.Compose([
+            transforms.RandomResizedCrop(config.data.image_size),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+        ])
+        dataset = CarData(
+            os.path.join(args.exp, "dataset", "car_ims"),
+            transform=transform
         )
 
     elif config.data.dataset == "CELEBA":
