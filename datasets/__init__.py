@@ -65,9 +65,19 @@ def get_dataset(args, config):
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
         ])
+
+        test_transform = transforms.Compose([
+                        transforms.Resize(config.data.image_size),
+                        transforms.ToTensor()
+                        ])
+        
         dataset = CarData(
-            args.datapath,
+            os.path.join(args.datapath, "train"),
             transform=transform
+        )
+        test_dataset = CarData(
+            os.path.join(args.datapath, "test"),
+            transform=test_transform
         )
 
     elif config.data.dataset == "CELEBA":
