@@ -52,6 +52,11 @@ def parse_args_and_config():
         "--resume_training", action="store_true", help="Whether to resume training"
     )
     parser.add_argument(
+        "--datapath",
+        type=str,
+        help="Datapath of the folder containing training images."
+    )
+    parser.add_argument(
         "-i",
         "--image_folder",
         type=str,

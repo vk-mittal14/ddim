@@ -66,7 +66,7 @@ def get_dataset(args, config):
             transforms.ToTensor(),
         ])
         dataset = CarData(
-            os.path.join(args.exp, "dataset", "car_ims"),
+            args.datapath,
             transform=transform
         )
 
