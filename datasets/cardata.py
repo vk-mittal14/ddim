@@ -2,13 +2,13 @@ from torch.utils.data import Dataset
 from PIL import Image
 import torchvision.transforms as T
 import os.path as osp
-
+import os
 
 class CarData(Dataset):
     def __init__(self, folder_path, transform) -> None:
         super().__init__()
         self.folder_path = folder_path 
-        self.img_list = osp.listdir(folder_path)
+        self.img_list = os.listdir(folder_path)
         self.transform = transform
         
     def __len__(self):
